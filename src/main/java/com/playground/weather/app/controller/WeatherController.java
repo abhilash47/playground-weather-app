@@ -22,11 +22,6 @@ public class WeatherController {
 	@Autowired
 	WeatherService weatherService;
 	
-	@GetMapping("/test")
-	public String getTestApp() {
-		return "Success";
-	}
-	
 	@GetMapping("/weather/{coords}")
 	public ResponseEntity getWeather(@PathVariable(value = "coords") String coords) {
 		
