@@ -26,29 +26,6 @@ public class WeatherGateway {
 	@Value("${weather.authHeader}")
 	private String authHeader;
 	
-	public JSONObject getWeather(String lat, String lon, String time) throws Exception {
-		
-		String coords = lat+","+lon+","+time;
-		String url = weatherApiUrl + authHeader + "/" + coords;
-		
-		try {
-			
-			ResponseEntity<JSONObject> response = restTemplate.getForEntity(url, JSONObject.class);
-			
-			if(response.getStatusCode().equals(HttpStatus.OK)) {				
-				JSONObject body = response.getBody();
-				return body;
-				
-			} else {
-				throw new Exception("Service response not 200");
-			}
-			
-		} catch (Exception ex) {
-			throw new Exception("Exception while calling service");
-		}
-		
-	}
-	
 	public WeatherApiResponse getWeather(String coords) throws Exception {
 	
 		if (StringUtils.isBlank(coords)) {
