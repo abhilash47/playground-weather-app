@@ -1,5 +1,7 @@
 package com.playground.weather.app.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -48,19 +50,29 @@ public class WeatherService {
 		WeatherResponse response = new WeatherResponse();
 		
 		response.setDate(new Date(input.getCurrently().getTime()*1000));
-		response.setTime(input.getCurrently().getTime());
+		response.setTime(convertDate(input.getCurrently().getTime()));
 		response.setTemperature(input.getCurrently().getTemperature());
 		
 		DailyData dailyData = input.getDaily().getData().get(0);
 		
-		response.setSunriseTime(dailyData.getSunriseTime());
-		response.setSunsetTime(dailyData.getSunsetTime());
+		response.setSunriseTime(convertDate(dailyData.getSunriseTime()));
+		response.setSunsetTime(convertDate(dailyData.getSunsetTime()));
 		response.setTemperatureHigh(dailyData.getTemperatureHigh());
 		response.setTemperatureLow(dailyData.getTemperatureLow());
-		response.setTemperatureLowTime(dailyData.getTemperatureLowTime());
-		response.setTemperatureHighTime(dailyData.getTemperatureHighTime());		
+		response.setTemperatureLowTime(convertDate(dailyData.getTemperatureLowTime()));
+		response.setTemperatureHighTime(convertDate(dailyData.getTemperatureHighTime()));		
 		
 		return response;
+		
 	}
 	
+	private static String convertDate(long val) {
+		
+		Date date = new Date(val);
+		DateFormat formattype = new SimpleDateFormat("HH:mm:ss");
+		String formated = formattype.format(date);
+		
+		return formated;
+		
+	}
 }

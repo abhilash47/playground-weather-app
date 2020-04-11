@@ -11,14 +11,13 @@ public class WeatherResponse {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	Date date;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss.SSSZ")
-	long time;
+	String time;
 	float temperature;
-	long sunriseTime;
-	long sunsetTime;
+	String sunriseTime;
+	String sunsetTime;
 	float temperatureHigh;
-	long temperatureHighTime;
+	String temperatureHighTime;
 	float temperatureLow;
-	long temperatureLowTime;
+	String temperatureLowTime;
 	
 }
